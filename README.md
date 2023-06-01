@@ -22,27 +22,27 @@ Flask
 # Commands
 
 Create venv
-$ git clone https://github.com/Kruthikaravi/load-balancer.git
-$ cd load-balancer
-$ python3.9 -m venv env
-$ source env/bin/activate
+$ git clone https://github.com/Kruthikaravi/load-balancer.git <br />
+$ cd load-balancer <br />
+$ python3.9 -m venv env <br />
+$ source env/bin/activate <br />
 
-To install requirements
-$ pip install -r requirements.txt
+To install requirements <br />
+$ pip install -r requirements.txt <br />
 
-Build Docker Image from Dockerfile
-$ docker build -t server .
+Build Docker Image from Dockerfile <br />
+$ docker build -t server . <br />
 
-Spin up Docker Containers
-$ docker-compose up -d
+Spin up Docker Containers <br />
+$ docker-compose up -d <br />
 
-$ docker-compose ps
+$ docker-compose ps <br />
 
-Run load Balancer
-$ FLASK_APP=loadbalancer.py flask run
+Run load Balancer <br />
+$ FLASK_APP=loadbalancer.py flask run <br />
 
 Test 
-$ curl -H 'Host: www.drexel.edu' 127.0.0.1:5000
+$ curl -H 'Host: www.drexel.edu' 127.0.0.1:5000 <br />
 
-Run all tests and shut down containers
-$ make test
+Run all tests and shut down containers <br />
+$ make test <br />
