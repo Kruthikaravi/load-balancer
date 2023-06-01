@@ -12,12 +12,12 @@ venv is used for creating isolated Python environments. <br />
 Make is an automation tool that generates executable and non-source files <br />
 Docker is a containerization tool designed to simplify the development and deployment of applications. <br />
 
-dependencies:
+dependencies: <br />
 
-python3 and pip (or pip3)
-venv
-pytest
-Flask
+python3 and pip (or pip3) <br />
+venv <br />
+pytest <br />
+Flask <br />
 
 # Commands
 
