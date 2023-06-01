@@ -1,0 +1,26 @@
+version: '3'
+services:
+  Drexel1:
+    image: server
+    environment:
+      - APP=drexel
+    ports:
+      - "8081:5000"
+  Drexel2:
+    image: server
+    environment:
+      - APP=drexel
+    ports:
+      - "8082:5000"
+  Upenn1:
+    image: server
+    environment:
+      - APP=upenn
+    ports:
+      - "9081:5000"
+  Upenn2:
+    image: server
+    environment:
+      - APP=upenn
+    ports:
+      - "9082:5000"
