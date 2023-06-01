@@ -2,15 +2,15 @@
 Kruthika Ravi
 CS544 - Computer Networks Spring 2023
 
-A load balancer is a networking component that's used for distributing network traffic across multiple servers in order to horizontally scale web-based applications. There are many popular ones out there such as Nginx, HAProxy, and Traefik, to name a few. A load balancer is a critical component in system design, as it is responsible for distributing incoming requests to multiple servers to ensure that no single server becomes overwhelmed, and that the overall system performance remains optimal. This is extremely important in case of congestion control and routing protocols. 
+A load balancer is a networking component that's used for distributing network traffic across multiple servers in order to horizontally scale web-based applications. There are many popular ones out there such as Nginx, HAProxy, and Traefik, to name a few. A load balancer is a critical component in system design, as it is responsible for distributing incoming requests to multiple servers to ensure that no single server becomes overwhelmed, and that the overall system performance remains optimal. This is extremely important in case of congestion control and routing protocols. <br />
 
 
-Used the following tools:
-Flask is a popular Python web framework.
-pytest is a testing framework.
-venv is used for creating isolated Python environments.
-Make is an automation tool that generates executable and non-source files
-Docker is a containerization tool designed to simplify the development and deployment of applications.
+Used the following tools: <br />
+Flask is a popular Python web framework. <br />
+pytest is a testing framework. <br />
+venv is used for creating isolated Python environments. <br />
+Make is an automation tool that generates executable and non-source files <br />
+Docker is a containerization tool designed to simplify the development and deployment of applications. <br />
 
 dependencies:
 
