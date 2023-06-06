@@ -1,0 +1,72 @@
+Using a Pytest Module and test driven development to create a http load balancer.
+
+We implement routing. Routing is a general concept in networking which refers to the path a packet takes to reach a destination. 
+In our case, when we implement routing in a load balancer we're referring to how HTTP requests reach other collections of servers 
+(or different backend servers). Different routing strategies can be used to control the behavior of the load balancer.
+
+With host-based routing, requests are directed based on the request host header. If the header is not found then 
+the load balancer returns a 404 to the client.
+There are two ways to set up the host header-- explicit and implicit. The explicit way is to simply pass it in your HTTP client.
+
+For example:
+
+curl -H 'Host: www.google.com' 172.217.169.68
+The implicit way is:
+
+curl www.google.com
+
+Path-based routing relies on the URI to send the request to the backend servers.
+
+For example:
+
+https://www.mywebsite.com/page1
+https://www.mywebsite.com/page2
+
+In order to test out the load balancer's routing functionality, 
+we need to set up multiple servers for each of our hosts. 
+To simplify this, we'll use both Docker and Docker Compose:
+
+Docker is a containerization tool designed to simplify the development and deployment of an application.
+Docker-compose is a tool used for defining and running multi-container Docker applications. 
+Each of our backends will run in a separate container.
+
+Implementation - First, define our backend servers in a config file for our hosts which are based on the Docker Compose file. 
+Then fetch the Host header and ran an if condition to check if it matches our criteria. 
+If a match, then chose a backend server at random and sent an HTTP request and returned 
+the HTTP response body and status code back to the client. 
+If no matches, we return "Not Found" along with a 404 status code.
+
+Health checking is a crucial component of any load balancer because it distinguishes between healthy and unhealthy backend servers. 
+Since we have multiple backend servers, any of those servers at any given time could be down. 
+When an HTTP request comes in, we want to make sure we can send it to a healthy server so that our service is always available.
+In conventional load balancers, health checks are run in the background but in our case, 
+for simplicity, this will run them in the foreground.
+
+Implementation - add a health check endpoint. create a Server class that represents a backend server. implement some sort of healthcheck method to populate data about the server.
+
+This is stateful and we use the concept of a register, which is meant to hold the source of truth about the state of the servers so the load balancer knows which servers are healthy and, thus, can receive traffic.
+
+We can define HTTP header "rules" is in the configuration file.
+
+Load balancing algorithms are used to determine which backend server will be selected when load balancing.
+
+For example, perhaps you have three backend servers in your server pool. 
+Two are normal servers while one has much more memory and processing power. 
+In this case, the "weighted" algorithm can be used to send more traffic to the more powerful server than the other two servers. 
+This is just one of many algorithms that can be used.
+
+The Least Connections algorithm sends traffic to the backend server that has the least number of open connections. This helps to make sure that servers are not sitting idle and connections are being spread across the servers. We implement a basic version of this.
+
+Load balancers are meant for distributing traffic. Often, when an attack vector such as a DDOS attack takes place, it's not feasible to block all traffic for long periods of time since we still want to allow traffic from clients not part of the attack. Since our load balancer has insights into the various parts of an HTTP request, like the headers and requested URL, we can monitor exactly which clients are targeting and apply blocking rules appropriately based on behavior. So, by adding firewall capabilities to our load balancer, we can block traffic in an intelligent way that's not otherwise available since Edge routers do not usually have access to HTTP requests.
+
+We add firewall rules, in the case where we need to turn off parts of our application we can return a 403 whenever they hit a certain path.
+
+Health Check:
+
+$ curl 127.0.0.1:5000/upenn
+
+$ curl -H 'Host: www.drexel.com' 127.0.0.1:5000
+
+$ curl -H 'Host: www.drexel.com' 127.0.0.1:5000/v1
+
+$ curl 127.0.0.1:5000/phila
