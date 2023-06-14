@@ -1,6 +1,5 @@
 # http-load-balancer
-Kruthika Ravi
-CS544 - Computer Networks Spring 2023
+https://testdriven.io/courses/http-load-balancer/
 
 A load balancer is a networking component that's used for distributing network traffic across multiple servers in order to horizontally scale web-based applications. There are many popular ones out there such as Nginx, HAProxy, and Traefik, to name a few. A load balancer is a critical component in system design, as it is responsible for distributing incoming requests to multiple servers to ensure that no single server becomes overwhelmed, and that the overall system performance remains optimal. This is extremely important in case of congestion control and routing protocols. <br />
 
