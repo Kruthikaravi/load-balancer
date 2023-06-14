@@ -20,7 +20,7 @@ Flask <br />
 
 # Commands
 
-Create venv
+
 $ git clone https://github.com/Kruthikaravi/load-balancer.git <br />
 $ cd load-balancer <br />
 $ python3.9 -m venv env <br />
